@@ -9,12 +9,13 @@ public class UIManager : MonoBehaviour {
     private bool isPaused = false;
 
     //Holds Collectables Objects
+    public GameObject collectablesScreen;
     private bool showCollectables = false;
 
 
 	// Use this for initialization
 	void Start () {
-	
+        collectablesScreen.gameObject.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -52,9 +53,27 @@ public class UIManager : MonoBehaviour {
         {
             isPaused = true;
             Time.timeScale = 0;
-
+            collectablesScreen.gameObject.SetActive(false);
             //Show UI
             currentPause = Instantiate(pausedScreen) as GameObject;
+        }
+
+    }
+
+    //Toggles the collectable screen
+    public void ToggleCollectablesScreen()
+    {
+        if (showCollectables == true)
+        {
+            showCollectables = false;
+            //Hide UI
+            collectablesScreen.gameObject.SetActive(false);
+        }
+        else
+        {
+            showCollectables = true;
+            //Show UI
+            collectablesScreen.gameObject.SetActive(true);
         }
 
     }
